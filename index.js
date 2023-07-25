@@ -4,8 +4,8 @@ const path = require('path');
 const Docxtemplater = require('docxtemplater');
 const PizZip = require("pizzip");
 const bodyParser = require('body-parser');
-const puppeteer = require('puppeteer');
-const { PDFDocument } = require('pdf-lib');
+//const puppeteer = require('puppeteer');
+//const { PDFDocument } = require('pdf-lib');
 const dotenv = require('dotenv');
 const docxConverter = require('docx-pdf');
 
