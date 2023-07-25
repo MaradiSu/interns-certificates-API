@@ -1,0 +1,60 @@
+const fs = require('fs');
+const path = require('path');
+const Docxtemplater = require('docxtemplater');
+const PizZip = require("pizzip");
+const docxConverter = require('docx-pdf');
+
+// Function to generate a unique reference ID
+function generateRefId() {
+  const prefix = 'hometute-23';
+  const uniquePart = Math.random().toString(36).substring(2, 10);
+  return `${prefix}-${uniquePart}`;
+}
+
+// Additional data
+const currentDate = new Date().toLocaleDateString();
+const refId = generateRefId();
+
+// Configuration
+const templatePath = process.env.NODE_ENV === 'development'
+  ? path.join(__dirname, '../templates', 'LetterHead.docx')
+  : path.join(__dirname, '../templates', 'LetterHead.docx');
+
+// Controller function to generate Word documents
+exports.generateDocument = async (req, res, next) => {
+  const studentData = req.body;
+
+  // Read the Word template
+  const template = fs.readFileSync(templatePath, 'binary');
+  const zip = new PizZip(template);
+  const doc = new Docxtemplater(zip, {
+    paragraphLoop: true,
+    linebreaks: true,
+  });
+  const content = {
+    ...studentData,
+    currentDate,
+    refId,
+  };
+
+  // Render the document (Replace {first_name} by John, {last_name} by Doe, ...)
+  try {
+    doc.setData(content);
+    doc.render();
+  } catch (error) {
+    console.error('Error while rendering the document:', error);
+    return next({ status: 500, message: 'Document rendering failed.' });
+  }
+
+  // Generate and send the document buffer in the response
+  const buf = doc.getZip().generate({
+    type: "nodebuffer",
+    compression: "DEFLATE",
+  });
+
+  fs.writeFileSync(path.resolve(__dirname, `../Student_${content.refId}.docx`), buf);
+
+  res.setHeader('Content-Type', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document');
+  res.setHeader('Content-Disposition', `attachment; filename=Student_${content.refId}.docx`);
+  res.send(buf);
+};
