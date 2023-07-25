@@ -46,15 +46,9 @@ exports.generateDocument = async (req, res, next) => {
     return next({ status: 500, message: 'Document rendering failed.' });
   }
 
-  // Generate and send the document buffer in the response
-  const buf = doc.getZip().generate({
-    type: "nodebuffer",
-    compression: "DEFLATE",
-  });
+  // Generate and send the document name in the response
+  const fileName = `Student_${content.refId}.docx`;
+  fs.writeFileSync(path.resolve(__dirname, fileName), doc.getZip().generate({ type: 'nodebuffer' }));
 
-  fs.writeFileSync(path.resolve(__dirname, `../Student_${content.refId}.docx`), buf);
-
-  res.setHeader('Content-Type', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document');
-  res.setHeader('Content-Disposition', `attachment; filename=Student_${content.refId}.docx`);
-  res.send(buf);
+  return res.json({ fileName });
 };
