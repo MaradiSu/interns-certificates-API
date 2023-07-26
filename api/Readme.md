@@ -41,6 +41,7 @@ Content-Type: application/json
   "college": "ABC College",
   "course": "Computer Science"
 }
+```
 
 Send Request: Click the "Send" button to send the request. The API will generate a Word document and provide it as a response.
 Using Appsmith UI
