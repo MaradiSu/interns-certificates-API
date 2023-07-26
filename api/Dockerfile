@@ -18,7 +18,7 @@ EXPOSE 7000
 
 # Set any necessary environmental variables (if applicable)
 #ENV ENV_VARIABLE_NAME=value
-ENV DEV_TEMPLATE_PATH=dev_templates
+ENV DEV_TEMPLATE_PATH=../dev_templates
 ENV PROD_TEMPLATE_PATH=prod_templates
 ENV NODE_ENV=development
 # Command to start your Node.js application
