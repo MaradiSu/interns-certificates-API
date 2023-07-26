@@ -10,7 +10,7 @@ yarn-error.log
 .vscode/
 .idea/
 *.iml
-*.docx
+#*.docx
 *.pdf
 # Logs
 logs/
