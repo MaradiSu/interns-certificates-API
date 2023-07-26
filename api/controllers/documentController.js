@@ -20,7 +20,7 @@ const refId = generateRefId();
 
 // Configuration
 const templatePath = process.env.NODE_ENV === 'development'
-  ? path.join(__dirname, process.env.DEV_TEMPLATE_PATH, 'LetterHead.docx')
+  ? path.join(__dirname, 'LetterHead.docx')
   : path.join(__dirname, '../prod_templates', 'LetterHead.docx');
 
 // Controller function to generate Word documents
