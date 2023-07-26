@@ -1,97 +1,68 @@
-# Project Name
+# API Documentation and Usage Guide
 
-![Project Logo](/path/to/logo.png) <!-- Replace with your project logo -->
+Welcome to the API documentation for our service! This guide will walk you through how to interact with our API, which is running as a Docker container on our EC2 instance at `3.7.66.66:7000`.
 
-## Description
+## API Endpoint
 
-Short project description goes here. Explain what the project is about, its objectives, and any relevant background information.
+The API endpoint is accessible at:
 
-## Features
-
-- Feature 1: Description of feature 1.
-- Feature 2: Description of feature 2.
-- ...
-
-## Technologies Used
-
-- Node.js: [Node.js Official Website](https://nodejs.org/)
-- Express.js: [Express.js Official Website](https://expressjs.com/)
-- MongoDB: [MongoDB Official Website](https://www.mongodb.com/)
-- ... (List other technologies used)
-
-## Table of Contents
-
-- [Description](#description)
-- [Features](#features)
-- [Technologies Used](#technologies-used)
-- [Table of Contents](#table-of-contents)
-- [Setup](#setup)
-  - [Clone the Repository](#clone-the-repository)
-  - [Install Dependencies](#install-dependencies)
-  - [Environmental Variables](#environmental-variables)
-  - [Database Setup](#database-setup)
-- [How to Run](#how-to-run)
-- [API Documentation](#api-documentation)
-- [Contributing](#contributing)
-- [License](#license)
-
-## Setup
-
-### Clone the Repository
-
-To get started with the project, you can clone the repository to your local machine using the following command:
-
-```bash
-git clone https://github.com/yourusername/your-repository.git
-
-Install Dependencies
-After cloning the repository, navigate to the project directory and install the required dependencies using npm:
-
-cd your-repository
-npm install
+http://3.7.66.66:7000/generate-document
 
 
-Environmental Variables
-The application requires the following environmental variables to be set. Create a .env file in the root directory and provide the necessary values:
+## API Documentation
 
-PORT=3000
-MONGODB_URI=mongodb://localhost:27017/your-database-name
-SECRET_KEY=your-secret-key
+We have set up Swagger documentation for our API, making it easy for you to explore the available endpoints and understand their usage. The Swagger documentation can be accessed at:
 
 
-PORT: The port number on which the application will run.
-MONGODB_URI: Connection string for your MongoDB database.
-SECRET_KEY: Secret key for authentication and session management.
-Database Setup
-Explain how to set up the required database (if any). Provide any instructions on database migration, seed data, or initialization scripts.
-
-How to Run
-To start the application, run the following command:
-
-npm start
-The application will be accessible at http://localhost:3000 (or the port you specified in .env).
-
-API Documentation
-Provide a link to the API documentation (if available) or explain how to access it. You can generate the documentation using tools like Swagger/OpenAPI or Postman.
-
-Contributing
-We welcome contributions from the community! To contribute to the project, follow these steps:
-
-Fork the repository.
-Create a new branch for your feature or bug fix: git checkout -b your-branch-name
-Make your changes and commit them: git commit -m "Your commit message"
-Push your changes to your fork: git push origin your-branch-name
-Create a pull request on the main repository.
-Please follow our Contributing Guidelines for more details.
-
-License
-Specify the license under which your project is released. For example:
-
-This project is licensed under the MIT License.
-
-© Your Name
+http://3.7.66.66:7000:7000/api-docs
 
 
-Replace the placeholder information such as project name, logo, technology links, and other specific details with your actual project information. Also, ensure to update the links and file paths with the correct URLs or file locations for your project.
+## Using Postman
 
-With this README template, you have a comprehensive guide that includes project description, setup instructions, API documentation, contribution guidelines, and licensing information. This will help potential users and contributors understand and engage with your project effectively.
+To interact with our API using Postman, follow these steps:
+
+1. Install Postman: If you haven't already, download and install [Postman](https://www.postman.com/downloads/) on your machine.
+
+2. Open Postman: Launch Postman and create a new request.
+
+3. Set Request URL: Set the request URL to `http://<YOUR_EC2_PUBLIC_IP>:7000/generate-document`.
+
+4. Set Request Method: Choose `POST` as the request method.
+
+5. Set Headers: Add the following header to the request:
+
+Content-Type: application/json
+
+6. Set Request Body: In the request body, provide the student details in JSON format. For example:
+
+```json
+{
+  "name": "John Doe",
+  "college": "ABC College",
+  "course": "Computer Science"
+}
+
+Send Request: Click the "Send" button to send the request. The API will generate a Word document and provide it as a response.
+Using Appsmith UI
+To create a user-friendly UI and interact with our API using Appsmith, follow these steps:
+
+Install Appsmith: If you haven't already, sign up and install Appsmith on your machine.
+
+Open Appsmith: Launch Appsmith and create a new project.
+
+Add HTTP(S) Request Widget: Drag and drop the "HTTP(S) Request" widget from the Widget panel to your page.
+
+Configure HTTP(S) Request: In the "Data" section of the widget properties, set the URL to http://<YOUR_EC2_PUBLIC_IP>:7000/generate-document and the method to POST.
+
+Add Form Widgets: Add form widgets (e.g., text input fields) for students to enter their details.
+
+Map Form Data to Request Body: Map the form data to the request body in the "Body" section of the widget properties.
+
+Add a Button: Add a button to trigger the HTTP(S) Request when clicked.
+
+Handle API Response: In the "Actions" section of the widget properties, handle the API response to display the generated Word document or any other relevant information.
+
+Assignment
+As part of your assignment, create a user interface using Appsmith to interact with our API and generate Word documents with student details. Follow the steps mentioned above to integrate the HTTP(S) Request widget and handle API responses. Once your UI is ready, you can use it to generate documents and experiment with different student details.
+
+Happy coding and have fun exploring our API!
