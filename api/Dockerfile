@@ -13,7 +13,7 @@ RUN npm install
 # Copy the rest of the application source code to the container's working directory
 COPY . .
 
-COPY /home/ec2-user/LetterHead* .
+
 # Expose the port on which your Node.js application is running (replace 7000 with the appropriate port number)
 EXPOSE 7000
 
