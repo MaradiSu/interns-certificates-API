@@ -12,7 +12,7 @@ const options = {
     },
     servers: [
       {
-        url: 'http://localhost:7000', // Replace with your API's base URL
+        url: 'http://3.7.66.66:7000', // Replace with your API's base URL
       },
     ],
   },

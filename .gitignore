@@ -30,3 +30,6 @@ Thumbs.db
 
 # Backup files
 *.bak
+
+#Key files
+*.pem
