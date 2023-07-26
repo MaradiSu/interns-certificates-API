@@ -3,6 +3,9 @@ const path = require('path');
 const Docxtemplater = require('docxtemplater');
 const PizZip = require("pizzip");
 const docxConverter = require('docx-pdf');
+const dotenv = require('dotenv');
+
+dotenv.config();
 
 // Function to generate a unique reference ID
 function generateRefId() {
@@ -17,8 +20,8 @@ const refId = generateRefId();
 
 // Configuration
 const templatePath = process.env.NODE_ENV === 'development'
-  ? path.join(__dirname, '../templates', 'LetterHead.docx')
-  : path.join(__dirname, '../templates', 'LetterHead.docx');
+  ? path.join(process.env.DEV_TEMPLATE_PATH, 'LetterHead.docx')
+  : path.join(__dirname, '../prod_templates', 'LetterHead.docx');
 
 // Controller function to generate Word documents
 exports.generateDocument = async (req, res, next) => {

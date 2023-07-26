@@ -7,10 +7,13 @@
         "type": "node",
         "request": "launch",
         "name": "Debug Node.js App (Development)",
-        "program": "${workspaceFolder}/index.js",
+        "program": "${workspaceFolder}/api/app.js",
         "runtimeArgs": ["--inspect"],
         "env": {
-          "NODE_ENV": "development"
+          "DEV_TEMPLATE_PATH":"${workspaceFolder}/api/dev_templates",
+          "PROD_TEMPLATE_PATH":"${workspaceFolder}/api/prod_templates",
+          "NODE_ENV":"development",
+          "OUTPUT_PATH" :"/home/ec2-user/"
         }
       }
     ]
