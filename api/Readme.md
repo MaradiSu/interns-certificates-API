@@ -14,7 +14,7 @@ http://3.7.66.66:7000/generate-document
 We have set up Swagger documentation for our API, making it easy for you to explore the available endpoints and understand their usage. The Swagger documentation can be accessed at:
 
 
-http://3.7.66.66:7000:7000/api-docs
+http://3.7.66.66:7000/api-docs
 
 
 ## Using Postman
