@@ -1,6 +1,8 @@
 const express = require('express');
 const dotenv = require('dotenv');
 const bodyParser = require('body-parser');
+const swaggerUi = require('swagger-ui-express');
+const specs = require('./swagger'); // Import the Swagger configuration file
 const documentRoutes = require('./routes/documentRoutes');
 const errorHandler = require('./middlewares/errorHandler');
 
@@ -14,7 +16,8 @@ app.use(bodyParser.json());
 
 // Routes
 app.use('/generate-document', documentRoutes);
-
+// Serve Swagger UI
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs));
 // Error Handler Middleware
 app.use(errorHandler);
 
