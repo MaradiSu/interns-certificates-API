@@ -15,8 +15,7 @@ function generateRefId() {
 }
 
 // Additional data
-const currentDate = new Date().toLocaleDateString();
-const refId = generateRefId();
+
 
 // Configuration
 const templatePath = process.env.NODE_ENV === 'development'
@@ -26,7 +25,8 @@ const templatePath = process.env.NODE_ENV === 'development'
 // Controller function to generate Word documents
 exports.generateDocument = async (req, res, next) => {
   const studentData = req.body;
-
+  const currentDate = new Date().toLocaleDateString();
+  const refId = generateRefId();
   // Read the Word template
   const template = fs.readFileSync(templatePath, 'binary');
   const zip = new PizZip(template);
