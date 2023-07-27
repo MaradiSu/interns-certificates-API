@@ -2,6 +2,7 @@ const express = require('express');
 const dotenv = require('dotenv');
 const bodyParser = require('body-parser');
 const swaggerUi = require('swagger-ui-express');
+const cors = require('cors'); // for cors
 const specs = require('./swagger'); // Import the Swagger configuration file
 const documentRoutes = require('./routes/documentRoutes');
 const errorHandler = require('./middlewares/errorHandler');
@@ -13,7 +14,7 @@ const port = process.env.PORT || 7000;
 
 // Middlewares
 app.use(bodyParser.json());
-
+app.use(cors()); // Adding this line before defining routes for cors
 // Routes
 app.use('/generate-document', documentRoutes);
 // Serve Swagger UI
