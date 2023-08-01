@@ -50,7 +50,7 @@ exports.generateDocument = async (req, res, next) => {
   }
 
   // Generate and send the document name in the response
-  const fileName = `Student_${content.refId}.docx`;
+  const fileName = `${studentData.student_name}_${content.refId}.docx`;
   fs.writeFileSync(path.resolve(__dirname, fileName), doc.getZip().generate({ type: 'nodebuffer' }));
 
   return res.json({ fileName });
